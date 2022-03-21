@@ -12,12 +12,12 @@ def retry_wrapper(func):
         n = 0
 
         while True:
+            if n == retry:
+                print("exhausted. exited.")
+                break
             rc = func(*args, **kargs)
             if rc != 200:
                 n += 1
-                if n == retry + 1:
-                    print("exhausted. exited.")
-                    break
                 sleep_time = 2 ** gap
                 gap += 1
                 print("sleep %d seconds for the %d retry - rc: %d" %(sleep_time, n, rc))
