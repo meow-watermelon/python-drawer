@@ -23,11 +23,8 @@ class DBClient():
             #logging.exception(e)
             raise SQLiteDBConnectException(str(e))
 
-        return self.db_connection
-
     def cursor(self):
         self.db_cursor = self.db_connection.cursor()
-        return self.db_cursor
 
     def execute(self, sql_executable):
         try:
